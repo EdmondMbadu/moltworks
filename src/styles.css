@@ -150,6 +150,16 @@ html, body {
   text-shadow: 0 0 8px rgba(0, 255, 136, 0.5), 0 0 16px rgba(0, 255, 136, 0.35);
 }
 
+.theme-root.theme-light .text-green,
+.theme-root.theme-light [style*="color: #00ff88"],
+.theme-root.theme-light [style*="color:#00ff88"],
+.theme-root.theme-light [style*="color: #00e5ff"],
+.theme-root.theme-light [style*="color:#00e5ff"],
+.theme-root.theme-light [style*="color: #a855f7"],
+.theme-root.theme-light [style*="color:#a855f7"] {
+  color: #0f766e !important;
+}
+
 /* Animations */
 @keyframes ticker-scroll {
   0% {
