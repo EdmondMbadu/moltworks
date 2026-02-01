@@ -25,6 +25,7 @@ interface Agent {
 })
 export class App implements OnInit, OnDestroy {
   protected readonly title = signal('MoltWorks');
+  isLightMode = false;
 
   // Live ticker transactions
   transactions: Transaction[] = [
@@ -136,6 +137,10 @@ export class App implements OnInit, OnDestroy {
     if (typeof window !== 'undefined' && this.scrollListener) {
       window.removeEventListener('scroll', this.scrollListener);
     }
+  }
+
+  toggleTheme(): void {
+    this.isLightMode = !this.isLightMode;
   }
 
   formatCurrency(amount: number): string {

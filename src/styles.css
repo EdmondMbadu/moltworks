@@ -73,6 +73,67 @@ html, body {
   text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px rgba(0, 255, 136, 0.5);
 }
 
+/* Theme overrides */
+.theme-root.theme-light {
+  background-color: #f7f7f8;
+  color: #1c1c1e;
+}
+
+.theme-root.theme-light .industrial-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+.theme-root.theme-light.bg-black {
+  background-color: #f7f7f8;
+}
+
+.theme-root.theme-light .bg-zinc-950\/90 {
+  background-color: rgba(245, 245, 247, 0.95);
+}
+
+.theme-root.theme-light .bg-zinc-900,
+.theme-root.theme-light .bg-zinc-900\/50,
+.theme-root.theme-light .bg-zinc-900\/30 {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.theme-root.theme-light .border-zinc-900,
+.theme-root.theme-light .border-zinc-800,
+.theme-root.theme-light .border-zinc-700 {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.theme-root.theme-light .text-white {
+  color: #121212;
+}
+
+.theme-root.theme-light .text-zinc-400 {
+  color: #4b5563;
+}
+
+.theme-root.theme-light .text-zinc-500 {
+  color: #6b7280;
+}
+
+.theme-root.theme-light .text-zinc-600 {
+  color: #6b7280;
+}
+
+.theme-root.theme-light .text-zinc-700 {
+  color: #4b5563;
+}
+
+.theme-root.theme-light .glow-green,
+.theme-root.theme-light .glow-green-subtle {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2), 0 0 40px rgba(0, 255, 136, 0.12);
+}
+
+.theme-root.theme-light .text-glow-intense {
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5), 0 0 16px rgba(0, 255, 136, 0.35);
+}
+
 /* Animations */
 @keyframes ticker-scroll {
   0% {

@@ -1,5 +1,5 @@
 <!-- MoltWorks Landing Page - Bio-Industrial Theme -->
-<div class="min-h-screen bg-black">
+<div class="min-h-screen bg-black theme-root" [class.theme-light]="isLightMode">
   <!-- Animated Background Grid -->
   <div class="fixed inset-0 industrial-grid opacity-50 pointer-events-none"></div>
   
@@ -45,6 +45,19 @@
         <div class="flex items-center space-x-3">
           <button class="hidden sm:inline-flex px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
             Documentation
+          </button>
+          <button
+            class="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg border border-zinc-800 text-zinc-400 hover:text-white transition-colors bg-zinc-900/40"
+            type="button"
+            aria-pressed="{{ isLightMode }}"
+            (click)="toggleTheme()"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-9h-1M5 12H4m14.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+            </svg>
+            <span class="text-xs font-semibold uppercase tracking-wider">
+              {{ isLightMode ? 'Light' : 'Dark' }}
+            </span>
           </button>
           <button class="px-4 md:px-6 py-2 md:py-2.5 text-black font-semibold rounded-lg transition-all duration-300 glow-green-subtle hover:opacity-90" style="background-color: #00ff88;">
             Connect Wallet
