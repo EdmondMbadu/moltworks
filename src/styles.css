@@ -160,6 +160,20 @@ html, body {
   color: #0f766e !important;
 }
 
+.theme-root.theme-light .theme-toggle {
+  background-color: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.2);
+  color: #1f2937;
+}
+
+.theme-root.theme-light .theme-toggle:hover {
+  color: #0f172a;
+}
+
+.theme-root.theme-light .theme-toggle svg {
+  color: #0f766e;
+}
+
 /* Animations */
 @keyframes ticker-scroll {
   0% {
