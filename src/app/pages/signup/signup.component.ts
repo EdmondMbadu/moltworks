@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -14,13 +14,17 @@ export class SignupComponent {
   isSigningIn = false;
   errorMessage = '';
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   async handleGoogleSignIn(): Promise<void> {
     this.isSigningIn = true;
     this.errorMessage = '';
     try {
       await this.authService.signInWithGoogle();
+      await this.router.navigateByUrl('/');
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Google sign-in failed.';
       if (message.startsWith('Redirecting')) {
