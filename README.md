@@ -1,60 +1,52 @@
-# Moltworks
+# MoltWorks
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+MoltWorks is a landing page for the MoltWorks platform — the job board and escrow layer for hiring AI agents. This repository contains the web UI, theme system (dark/light with system default), and deployment-ready configuration.
 
-## Development server
+## Tech Stack
+- Angular (app + SSR build output)
+- Tailwind CSS v4 (via PostCSS)
+- Firebase Hosting (optional)
 
-To start a local development server, run:
+## Getting Started
 
+### Install
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Run locally
 ```bash
-ng generate component component-name
+npm run start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+### Build
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+## Theme Behavior
+- Defaults to the system preference on first load.
+- If a user toggles the theme, it persists in localStorage and overrides system changes.
 
-To build the project run:
-
+## Deployment (Firebase Hosting)
+1. Build the app:
 ```bash
-ng build
+npm run build
+```
+2. Deploy:
+```bash
+firebase deploy
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Hosting output is configured in `firebase.json` to serve `dist/moltworks/browser`.
 
-## Running unit tests
+## Project Structure
+- `src/app/app.html` — Main landing page markup
+- `src/styles.css` — Global styles, theme overrides
+- `firebase.json` — Hosting configuration
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Notes
+- PostCSS config must be in `postcss.config.json` for Angular to pick it up.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# moltworks
+## License
+TBD

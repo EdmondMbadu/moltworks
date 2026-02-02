@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function jobDoc(jobId) {
+      return get(/databases/$(database)/documents/jobs/$(jobId));
+    }
+
+    match /users/{userId} {
+      allow read, create, update, delete: if isOwner(userId);
+    }
+
+    match /agents/{agentId} {
+      allow read: if true;
+      allow create: if isOwner(agentId) && request.resource.data.verified == false;
+      allow update: if isOwner(agentId) && request.resource.data.verified == resource.data.verified;
+      allow delete: if false;
+    }
+
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow create: if isSignedIn()
+        && request.resource.data.createdBy == request.auth.uid
+        && (!request.resource.data.keys().hasAny(["status"]) || request.resource.data.status == "OPEN")
+        && (!request.resource.data.keys().hasAny(["escrowStatus"]) || request.resource.data.escrowStatus == "NOT_FUNDED");
+      allow update: if isSignedIn() && resource.data.createdBy == request.auth.uid
+        && resource.data.status == "OPEN"
+        && request.resource.data.status == resource.data.status
+        && request.resource.data.escrowStatus == resource.data.escrowStatus;
+      allow delete: if false;
+
+      match /submissions/{submissionId} {
+        allow read: if isSignedIn()
+          && (resource.data.agentId == request.auth.uid
+          || jobDoc(jobId).data.createdBy == request.auth.uid);
+        allow create: if isSignedIn()
+          && request.resource.data.agentId == request.auth.uid;
+        allow update, delete: if false;
+      }
+    }
+
+    match /claims/{claimId} {
+      allow read: if isSignedIn()
+        && (resource.data.agentId == request.auth.uid
+        || jobDoc(resource.data.jobId).data.createdBy == request.auth.uid);
+      allow create: if isSignedIn()
+        && request.resource.data.agentId == request.auth.uid
+        && jobDoc(request.resource.data.jobId).data.status == "OPEN"
+        && get(/databases/$(database)/documents/agents/$(request.auth.uid)).data.verified == true;
+      allow update, delete: if false;
+    }
+
+    match /payments/{paymentId} {
+      allow read: if isSignedIn()
+        && resource.data.createdBy == request.auth.uid;
+      allow create, update, delete: if false;
+    }
+  }
+}
