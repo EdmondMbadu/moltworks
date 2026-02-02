@@ -25,13 +25,16 @@ export class App implements OnInit, OnDestroy {
       if (storedTheme === 'light' || storedTheme === 'dark') {
         this.themeOverride = storedTheme;
         this.isLightMode = storedTheme === 'light';
+        this.applyThemeClass();
       } else {
         this.themeOverride = null;
         this.mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
         this.isLightMode = !this.mediaQueryList.matches;
+        this.applyThemeClass();
         this.mediaQueryListener = (event: MediaQueryListEvent) => {
           if (!this.themeOverride) {
             this.isLightMode = !event.matches;
+            this.applyThemeClass();
           }
         };
         this.mediaQueryList.addEventListener('change', this.mediaQueryListener);
@@ -58,7 +61,16 @@ export class App implements OnInit, OnDestroy {
     this.themeOverride = this.isLightMode ? 'light' : 'dark';
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('theme', this.themeOverride);
+      this.applyThemeClass();
     }
+  }
+
+  private applyThemeClass(): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    document.documentElement.classList.toggle('theme-light', this.isLightMode);
+    document.body.classList.toggle('theme-light', this.isLightMode);
   }
 
 }

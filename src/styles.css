@@ -29,6 +29,20 @@ html, body {
   scroll-behavior: smooth;
 }
 
+html.theme-light,
+body.theme-light {
+  background-color: #f7f7f8;
+  color: #1c1c1e;
+}
+
+body.theme-light.bg-molt-black {
+  background-color: #f7f7f8;
+}
+
+body.theme-light.text-molt-text {
+  color: #1f2937;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -86,6 +100,11 @@ html, body {
 }
 
 .theme-root.theme-light.bg-black {
+  background-color: #f7f7f8;
+}
+
+.theme-root.theme-light .bg-black,
+.theme-light .bg-black {
   background-color: #f7f7f8;
 }
 
