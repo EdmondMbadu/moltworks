@@ -22,7 +22,11 @@ export class SignupComponent {
     try {
       await this.authService.signInWithGoogle();
     } catch (error) {
-      this.errorMessage = error instanceof Error ? error.message : 'Google sign-in failed.';
+      const message = error instanceof Error ? error.message : 'Google sign-in failed.';
+      if (message.startsWith('Redirecting')) {
+        return;
+      }
+      this.errorMessage = message;
     } finally {
       this.isSigningIn = false;
     }
