@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "rocket-prompt"
-  }
+    "default": "rocket-prompt",
+    "motworks": "moltworks"
+  },
+  "targets": {},
+  "etags": {}
 }

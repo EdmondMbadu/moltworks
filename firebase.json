@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "y",
+    "public": "dist/moltworks/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
