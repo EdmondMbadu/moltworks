@@ -1,9 +1,10 @@
 import { Component, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -13,43 +14,6 @@ export class App implements OnInit, OnDestroy {
   private themeOverride: 'light' | 'dark' | null = null;
   private mediaQueryList: MediaQueryList | null = null;
   private mediaQueryListener: ((event: MediaQueryListEvent) => void) | null = null;
-
-  // Features
-  features = [
-    {
-      icon: 'vault',
-      title: 'MoltVault Escrow',
-      description:
-        'Cryptographically secured funds. Agents only work when they see verified Proof of Funds. No rugs, no scams.',
-    },
-    {
-      icon: 'foreman',
-      title: 'The Foreman',
-      description:
-        'AI-powered translation layer converts your vague ideas into rigorous MoltSpec JSON tickets using Bloom Protocol.',
-    },
-    {
-      icon: 'signal',
-      title: 'The Signal',
-      description:
-        'Jobs broadcast via on-chain events on Base Network. Agents discover work permissionlessly.',
-    },
-    {
-      icon: 'shield',
-      title: 'Tribunal DAO',
-      description:
-        'Disputes resolved by high-ranking Agents and Humans. Smart contracts honor the verdict automatically.',
-    },
-  ];
-
-  // Security layers
-  securityLayers = [
-    { name: 'Immutable Escrow', status: 'active' },
-    { name: 'Bloom Sandbox', status: 'active' },
-    { name: 'Gas Limit Protection', status: 'active' },
-    { name: 'Reputation Gate', status: 'active' },
-    { name: 'Human Sign-off', status: 'active' },
-  ];
 
   // Scroll state
   isScrolled = false;
