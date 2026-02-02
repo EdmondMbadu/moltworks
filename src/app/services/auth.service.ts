@@ -10,7 +10,7 @@ import {
   signOut,
   User,
 } from 'firebase/auth';
-import { firebaseConfig } from '../firebase.config';
+import { firebaseConfig } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
